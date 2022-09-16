@@ -5,7 +5,7 @@
     <script src="https://unpkg.com/konva@8.1.1/konva.min.js"></script>
     <meta charset="utf-8" />
     <title>KPMG Lucky Wheel</title>
-    <style>  
+    <style>
       body {
         margin: 0;
         padding: 0;
@@ -17,7 +17,7 @@
   </head>
   <body>
     <img src="https://assets.kpmg/is/image/kpmg/KPMG-logo:cq5dam.web.1200.630" alt="KPMG" style="width:200px;height:100px;">
-    <p>WELCOME TO THE KPMG LUCKY WHEEL. How much will your donation to the NSPCC be?</p>
+    <p>WELCOME TO THE KPMG LUCKY WHEEL. What will you win today?</p>
     <div id="container"></div>
     <script>
       var width = window.innerWidth;
@@ -61,7 +61,8 @@
 
       function getRandomReward() {
         var mainDigit = Math.round(Math.random() * 4 + 1);
-        return mainDigit;
+        const prizes = ["", "🌊", "🍩", "🖊️", "☕", "🍬"]
+        return prizes[mainDigit];
       }
       function addWedge(n) {
         var s = getRandomColor();
@@ -146,8 +147,23 @@
           } else if (!finished && !controlled) {
             if (shape) {
               var text = shape.getParent().findOne('Text').text();
+              if (text == "🌊") {
+                  text = "a KPMG water bottle";
+              }
+              else if (text == "🍩") {
+                  text = "doughnut";
+              }
+              else if (text == "🖊️") {
+                  text = "a KPMG pen";
+              }
+              else if (text == "☕") {
+                  text = "a KPMG coffee cup";
+              }
+              else if (text == "🍬") {
+                  text = "some pick and mix";
+              }
               var price = text.split('\n').join('');
-              alert('You have donated £' + price + ' to the NSPCC');
+              alert('Wahoo! You have won ' + text + "!!!🥳🥳🥳");
             }
             finished = true;
           }
